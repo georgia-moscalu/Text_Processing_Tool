@@ -25,10 +25,25 @@ def to_upper(text):
         else:
             rezultat+=caracter
     return rezultat
+def elimina_spatii_multiple(text):
+    rezultat=""
+    ultimul_caracter=""
 
+    for caracter in text:
+        if caracter==" " and ultimul_caracter==" ":
+            #ultimu caracter ex" A  B-> A e this caracter last e "" iar la a doua iteratie
+            #last e "A" this carac e "" etc
+             continue #caracterul curent e aruncat si trece mai departe
+        rezultat+=caracter
+        ultimul_caracter=caracter
+    return rezultat.strip() #sterge spatiu dininte si dupa cuvant
 #testing
+
 text_init=read_file('input.txt')
+print(text_init)
 text_fara_punct=elim_punct(text_init)
 text_litere_mici=to_lower(text_fara_punct)
 text_litere_mari=to_upper(text_fara_punct)
-print(text_litere_mari)
+text_fara_spatii_duble=elimina_spatii_multiple(text_fara_punct)
+
+print(text_fara_spatii_duble)
