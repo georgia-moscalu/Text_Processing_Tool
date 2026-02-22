@@ -1,7 +1,9 @@
 def read_file(name):
     with open(name,'r') as f: #deschide fisierul si automat il inchide
         return f.read() #ia toate caracterele si spatiile din fisier si returneaza un sir lung de car
-
+def write_file(name,content):
+    with open(name,'w') as f:
+        f.write(content)
 def elim_punct(text):
     semne='!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
     text_curat="".join(caracter for caracter in text if caracter not in semne)
@@ -68,11 +70,7 @@ def display_menu():
     print("5 -> FILTER BY LENGTH")
     print("0 -> EXIT")
 def main():
-    nume_fisier="input.txt"
-    try:
-        text=read_file(nume_fisier)
-    except FileNotFoundError:
-        return
+    text=read_file('input.txt')
     text=elim_punct(text)
     while True:
         print("\nText curent:")
@@ -95,6 +93,8 @@ def main():
             l = int(input("Introdu lungimea dorita: "))
             text = filtru_lungime(text, l)
         elif optiune == "0":
+            write_file('output.txt',text)
+            print("Toate modificarile au fost salvate!")
             break
         else:
             print("Incearca din nou.")
