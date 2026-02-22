@@ -37,6 +37,19 @@ def elimina_spatii_multiple(text):
         rezultat+=caracter
         ultimul_caracter=caracter
     return rezultat.strip() #sterge spatiu dininte si dupa cuvant
+def left_allign(text):
+    #impartim textul in randuri
+    randuri=text.split("\n")
+    randuri_curate=[]
+
+    for rand in randuri:
+        #cautam poz primei litere care nu e spatiu
+        index_prima_litera=0
+        while index_prima_litera<len(rand) and rand[index_prima_litera]==" ":
+            index_prima_litera+=1
+        rand_aliniat=rand[index_prima_litera:]
+        randuri_curate.append(rand_aliniat)
+    return "\n".join(randuri_curate)
 #testing
 
 text_init=read_file('input.txt')
@@ -47,3 +60,5 @@ text_litere_mari=to_upper(text_fara_punct)
 text_fara_spatii_duble=elimina_spatii_multiple(text_fara_punct)
 
 print(text_fara_spatii_duble)
+text_aliniat=left_allign(text_fara_spatii_duble)
+print(text_aliniat)
