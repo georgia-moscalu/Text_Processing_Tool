@@ -50,15 +50,23 @@ def left_allign(text):
         rand_aliniat=rand[index_prima_litera:]
         randuri_curate.append(rand_aliniat)
     return "\n".join(randuri_curate)
+
+def filtru_lungime(text,limita_litere):
+    randuri=text.split('\n')
+    randuri_noi=[]
+    for rand in randuri:
+        cuvinte=rand.split()
+        cuvinte_filtrate=[c for c in cuvinte if len(c)>=limita_litere]
+        randuri_noi.append(" ".join(cuvinte_filtrate))
+    return "\n".join(randuri_noi)
 #testing
 
 text_init=read_file('input.txt')
-print(text_init)
-text_fara_punct=elim_punct(text_init)
-text_litere_mici=to_lower(text_fara_punct)
-text_litere_mari=to_upper(text_fara_punct)
-text_fara_spatii_duble=elimina_spatii_multiple(text_fara_punct)
+text = read_file('input.txt')
+text = elim_punct(text)
+text = to_upper(text)
+text = elimina_spatii_multiple(text)
+text = left_allign(text)
 
-print(text_fara_spatii_duble)
-text_aliniat=left_allign(text_fara_spatii_duble)
-print(text_aliniat)
+text_final = filtru_lungime(text, 6)
+print(text_final)
