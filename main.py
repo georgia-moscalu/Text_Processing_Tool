@@ -16,9 +16,19 @@ def to_lower(text):
         else:
             rezultat+=caracter
     return rezultat
+def to_upper(text):
+    rezultat=""
+    for caracter in text:
+        cod=ord(caracter)
+        if 97<= cod <= 122:
+            rezultat+=chr(cod-32)
+        else:
+            rezultat+=caracter
+    return rezultat
 
 #testing
 text_init=read_file('input.txt')
 text_fara_punct=elim_punct(text_init)
 text_litere_mici=to_lower(text_fara_punct)
-print(text_litere_mici)
+text_litere_mari=to_upper(text_fara_punct)
+print(text_litere_mari)
