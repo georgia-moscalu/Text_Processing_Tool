@@ -60,13 +60,44 @@ def filtru_lungime(text,limita_litere):
         randuri_noi.append(" ".join(cuvinte_filtrate))
     return "\n".join(randuri_noi)
 #testing
+def display_menu():
+    print("1 -> LITERE MARI")
+    print("2 -> LITERE MICI")
+    print("3 -> ELIMINA SPATII DUBLE")
+    print("4 -> ALIGN TEXT")
+    print("5 -> FILTER BY LENGTH")
+    print("0 -> EXIT")
+def main():
+    nume_fisier="input.txt"
+    try:
+        text=read_file(nume_fisier)
+    except FileNotFoundError:
+        return
+    text=elim_punct(text)
+    while True:
+        print("\nText curent:")
+        print(f"---")
+        print(text)
+        print(f"---")
 
-text_init=read_file('input.txt')
-text = read_file('input.txt')
-text = elim_punct(text)
-text = to_upper(text)
-text = elimina_spatii_multiple(text)
-text = left_allign(text)
+        display_menu()
+        optiune = input("Alege o optiune: ")
 
-text_final = filtru_lungime(text, 6)
-print(text_final)
+        if optiune == "1":
+            text = to_upper(text)
+        elif optiune == "2":
+            text = to_lower(text)
+        elif optiune == "3":
+            text = elimina_spatii_multiple(text)
+        elif optiune == "4":
+            text = left_allign(text)
+        elif optiune == "5":
+            l = int(input("Introdu lungimea dorita: "))
+            text = filtru_lungime(text, l)
+        elif optiune == "0":
+            break
+        else:
+            print("Incearca din nou.")
+
+if __name__=="__main__":
+    main()
